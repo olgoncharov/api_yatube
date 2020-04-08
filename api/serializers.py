@@ -1,14 +1,21 @@
-from rest_framework.serializers import ModelSerializer, SerializerMethodField
+from rest_framework.serializers import ModelSerializer, ReadOnlyField
 from posts.models import Post, Comment
 
 
 class PostSerializer(ModelSerializer):
-    author = SerializerMethodField()
+    author = ReadOnlyField(source='author.username')
 
     class Meta:
         model = Post
         fields = '__all__'
         read_only_fields = ['pub_date']
 
-    def get_author(self, obj):
-        return obj.author.get_full_name()
+
+class CommentSerializer(ModelSerializer):
+    author = ReadOnlyField(source='author.username')
+
+    class Meta:
+        model = Comment
+        fields = '__all__'
+        read_only_fields = ['post']
+
