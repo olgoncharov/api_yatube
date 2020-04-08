@@ -1,9 +1,11 @@
-from rest_framework.viewsets import ModelViewSet
-from posts.models import Post
-from .serializers import PostSerializer, CommentSerializer
 from django.shortcuts import get_object_or_404
-from .permissions import IsAuthor
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.viewsets import ModelViewSet
+
+from posts.models import Post
+
+from .permissions import IsAuthor
+from .serializers import CommentSerializer, PostSerializer
 
 
 class PostViewSet(ModelViewSet):

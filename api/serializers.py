@@ -1,5 +1,6 @@
 from rest_framework.serializers import ModelSerializer, ReadOnlyField
-from posts.models import Post, Comment
+
+from posts.models import Comment, Post
 
 
 class PostSerializer(ModelSerializer):
@@ -18,4 +19,3 @@ class CommentSerializer(ModelSerializer):
         model = Comment
         fields = '__all__'
         read_only_fields = ['post']
-
